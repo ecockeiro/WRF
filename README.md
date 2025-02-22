@@ -109,6 +109,23 @@
    ```bash
    ./compile
    ```
+## Instalação do GrADS e Ferret
+
+1. Volte para `install_wrf` baixe e descompacte os arquivos:
+   ```bash
+   tar zxfv opengrads.tar.gz
+   wget https://sourceforge.net/projects/opengrads/files/OpenGrADS%20-%20Binary/2.2.1.oga.1/opengrads-2.2.1.oga.1-bin.tar.gz/download -O opengrads.tar.gz
+   
+   wget https://github.com/NOAA-PMEL/Ferret/releases/download/v7.6.0/ferret-7.6.0-RHEL7-64.tar.gz
+   tar zxfv ferret7.6.0.tar.gz
+   ```
+2. Mova para `/usr/local/`:
+   ```bash
+   su -
+   (password)
+   mv ferret /usr/local
+   mv opengrads /usr/local
+   ```
 
 ## Instalação do Anaconda3
 
@@ -117,15 +134,16 @@
    su -
    (password)
    ```
-2. Vá até `install_wrf` e execute:
+2. Baixe na pasta `install_wrf` e execute:
    ```bash
+   wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh
    ./anaconda3-2023.09-0-Linux-x86_64.sh
    ```
    - **Aceite os termos**: `yes`
    - **Instale em**: `/usr/local/anaconda3`
    - **Finalize**: `yes`
 
-3. Configure o ambiente:
+4. Configure o ambiente:
    ```bash
    nano ~/.bashrc
    ```
@@ -140,29 +158,15 @@
      ```
    - Salve (`Ctrl+O`) e saia (`Ctrl+X`).
 
-4. Teste o GrADS e Ferret:
+5. Teste o GrADS e Ferret:
    ```bash
    grads
    ferret
    go tutorial
    ```
 
-## Instalação do GrADS e Ferret
 
-1. Volte para `install_wrf` e descompacte os arquivos:
-   ```bash
-   tar zxfv opengrads.tar.gz
-   tar zxfv ferret7.6.tar.gz
-   ```
-2. Mova para `/usr/local/`:
-   ```bash
-   su -
-   (password)
-   mv ferret /usr/local
-   mv opengrads /usr/local
-   ```
 
 ---
 
-Este guia cobre todos os passos necessários para instalar o WRF, WPS, Anaconda, GrADS e Ferret, organizando os comandos para melhor clareza e legibilidade. Agora, basta adicionar este arquivo ao GitHub (`README.md`).
 
