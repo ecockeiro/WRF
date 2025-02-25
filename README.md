@@ -184,33 +184,64 @@ go tutorial
 ## Execução do WRF
 
 ### 1. Inicialização
+Na pasta  ../WRFv.4.6.1/DOMAINS: 
 ```bash
 source ~/.bashrc
 mkdir GRADE_TEST
 cd ../WRFv4.6.1/DOMAINS/GRADE_TEST
 ```
 
+Crie uma pasta nova a cada experimento: 
+
+../WRFv4.6.1/DOMAINS# mkdir GRADE_TEST 
+
+ cd ../WRFv4.6.1/DOMAINS/GRADE_TEST#  
+
+Crie os domínios de grade no site: https://jiririchter.github.io/WRFDomainWizard/ 
+
+Copie e cole as informações de grade nos arquivos namelist.input e namelist.wps 
+
+Alguns modelos de namelists: 
+namelist.input: Best Practices 
+https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wrf.html 
+
+namelist.wps: Best Practices 
+https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html	 
+
 Utilize o **WRF Domain Wizard** para definir os domínios e configure os arquivos `namelist.input` e `namelist.wps`.
 
+após configurar os namelists copie-os para GRADE_TEST: 
+mv namelist.wps namelist.input ../WRFv4.6.1/DOMAINS/GRADE_TEST 
+
 ### 2. Criando links simbólicos:
+na pasta ../GRADE_TEST/#
 ```bash
 ln -sf ../WRFv4.6.1/WPS/geogrid/geogrid.exe .
 ln -sf ../WRFv4.6.1/WPS/geogrid/GEOGRID.TBL .
 ln -sf ../WRFv4.6.1/WPS/ungrib.exe .
 ln -sf ../WRFv4.6.1/WPS/metgrid.exe .
 ln -sf ../WRFv4.6.1/WPS/ungrib/Variable_Tables/Vtable.GFS Vtable
+ln -sf ../WRFv4.6.1/WPS /metgrid/METGRID.TBL.ARW METGRID.TBL
+ln -sf ../WRFv4.6.1/WRF/run/CAMtr_volume_mixing_ratio .
+ln -sf ../WRFv4.6.1/WRF/run/*DATA* .
+ln -sf ../WRFv4.6.1/WRF/run/*.TBL .
+ln -sf ../WRFv4.6.1/WRF/run/tr* .
+ln -sf ../WRFv4.6.1/WRF/run/*.bin .
+ln -sf ../WRFv4.6.1/WRF/run/ozone* .
+ln -sf ../WRFv4.6.1/WRF/run/real.exe .
+ln -sf ../WRFv4.6.1/WRF/run/wrf.exe . 
 ```
 
 ### 3. Executando os programas:
+Em ordem
 ```bash
+./geogrid.exe
 ./ungrib.exe
 ./metgrid.exe
 ```
 
 ### 4. Processamento com `real.exe` e `wrf.exe`
 ```bash
-ln -sf ../WRFv4.6.1/WRF/run/real.exe .
-ln -sf ../WRFv4.6.1/WRF/run/wrf.exe .
 ./real.exe
 mpiexec -np 4 ./wrf.exe
 ```
